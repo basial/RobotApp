@@ -1,0 +1,45 @@
+<div class='form_text'>
+	<h3> 1 $ = 1 credit </h3>
+	<h3> With 1 credit you can play with the robot for <strong>60</strong> enjoyable seconds! </h3>
+</div> 
+
+<div class='form'>
+	<%= form_for @transaction do |f| %>
+		<div class='field'>
+			<%= f.label :amount %><br>
+			<%= f.text_field :amount %>
+		</div>
+			<div class='field'>
+			<%= f.label :first_name %><br>
+			<%= f.text_field :first_name %>
+		</div>
+			<div class='field'>
+			<%= f.label :last_name %><br>
+			<%= f.text_field :last_name %>
+		</div>
+			<div class='field'>
+			<%= f.label :credit_card_number %><br>
+			<%= f.text_field :cc_number %>
+		</div>
+			<div class='field'>
+			<%= f.label :month %><br>
+			<%= f.text_field :month %>
+		</div>
+			<div class='field'>
+			<%= f.label :year %><br>
+			<%= f.text_field :year %>
+		</div>
+			<div class='field'>
+			<%= f.label :verification_value %><br>
+			<%= f.text_field :verification_value %>
+		</div>
+		<div class='action'>
+			<%= f.submit 'Buy credits!' %>
+		</div>
+	<% end %>
+</div>
+
+<div class='link_back'>
+	<%= link_to 'Play with the robot', root_path %><br><br>
+	<%= link_to 'Transaction history' %>
+</div>

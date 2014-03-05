@@ -1,0 +1,51 @@
+<% if current_user %>
+	<div class='text'>
+		<h3> Use buttons to operate the robot or write your commands in the box below.</h3><br> 
+		<h3> Enjoy! </h3>
+	</div>
+<% end %>
+
+	<div class="panel">
+		<div class='prox'>
+			<br><p> Proximity: <%= @prox %> </p>
+		</div>
+
+		<% if current_user %>
+			<div class='buttons'>
+				<%= button_to 'Forward', robot_path(do: :forward), method: :put %>
+				<%= button_to 'Backward', robot_path(do: :backward), method: :put %>
+				<%= button_to 'Slowly forward', robot_path(do: :slow_forward), method: :put %>
+				<%= button_to 'Slowly backward', robot_path(do: :slow_backward), method: :put %>
+				<%= button_to 'Left', robot_path(do: :left), method: :put %>
+				<%= button_to 'Right', robot_path(do: :right), method: :put %>
+				<%= button_to 'Run', robot_path(do: :run), method: :put %>
+				<%= button_to 'ATTAAAAACK!!!', robot_path(do: :attack), method: :put %>
+			</div>
+
+			<div class='commands_form'>
+				<%= form_tag(robot_path, method: :put) do %>
+					<%= label_tag :commands %><br>
+			 		<%= text_area_tag :commands, params[:commands] %><br>
+			  	<%= submit_tag 'Apply' %>
+				<% end %>
+			</div>
+			
+	<div class='instructions'>
+		<ul> <h2> Commands available: </h2> 
+			<li> <strong>forward</strong> - moves forward for 1 sec </li>
+			<li> <strong>backward</strong> - moves backward for 1 sec </li>
+			<li> <strong>slow_forward</strong> - slowly moves forward for 1 sec </li>
+			<li> <strong>slow_backward</strong> - slowly moves backward for 1 sec </li>
+			<li> <strong>left</strong> - turns left </li>
+			<li> <strong>right</strong> - turns right </li>
+			<li> <strong>attack</strong> - moves forward and swirls the blade for 1 sec</li>
+			<li> <strong>run</strong> - swirls the blade for 5 sec </li>
+		</ul>
+	</div>
+		
+		<% else %>
+			<div class='no_log_in'>
+				<p> Log in to operate the robot! </p>
+			</div>
+		<% end %>
+	</div>
