@@ -1,4 +1,3 @@
-class Credit 
-	belongs_to :user
+class Credit < ActiveRecord::Base
 	belongs_to :transaction
 end

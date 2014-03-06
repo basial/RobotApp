@@ -29,7 +29,7 @@
 		</div>
 		<% if current_user %>
 			<div class='credits'>
-				<p> Current balance: 100 <%= link_to 'Buy more credits', new_transaction_path %> </p>
+				<p> Current balance: <%= @credits.to_i %> <%= link_to 'Buy more credits', new_transaction_path %> </p>
 				<p> See transaction history: <%= link_to 'Transactions', current_user %></p>
 			</div>
 		<% end %>

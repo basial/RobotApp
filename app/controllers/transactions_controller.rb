@@ -6,26 +6,18 @@ class TransactionsController < ApplicationController
 	end
 
 	def create
-		@transaction = current_user.transactions.new(transaction_params)
-		@credit_card = ActiveMerchant::Billing::CreditCard.new(
-                :first_name         => params[:transaction][:first_name],
-                :last_name          => params[:transaction][:last_name],
-                :number             => params[:transaction][:cc_number],
-                :month              => params[:transaction][:month],
-                :year               => params[:transaction][:year],
-                :verification_value => params[:transaction][:verification_value])
-	
-		if @credit_card.valid? && @transaction.valid?
-			@response = GATEWAY.purchase(@transaction.amount, @credit_card)
-			if @response.success? && @transaction.save
+		begin
+			if current_user.payment!(transaction_params)
 				flash[:notice] = "Successful transaction"
 				redirect_to root_path
 			else
+				create_dummy_transaction(transaction_params)
 				flash[:notice] = "Transaction was not successful, please try again"
 				render 'new'
 			end
-		else
-			flash[:error] = "Credit card is not valid"
+		rescue MyTransactionError => e
+			create_dummy_transaction(transaction_params)
+			flash[:notice] = e.message
 			render 'new'
 		end
 	end
@@ -33,5 +25,9 @@ class TransactionsController < ApplicationController
 private
 	def transaction_params
 		params.require(:transaction).permit(:amount, :first_name, :last_name, :cc_number, :month, :year, :verification_value)
+	end
+
+	def create_dummy_transaction(p)
+		@transaction = Transaction.new(p)
 	end
 end

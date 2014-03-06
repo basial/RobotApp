@@ -5,6 +5,7 @@ require 'rails/all'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
+require File.expand_path('../../lib/my_transaction_error', __FILE__)
 
 module RobotApp
   class Application < Rails::Application
