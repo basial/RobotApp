@@ -1,0 +1,19 @@
+.tr_show {
+	display: inline-block;
+	margin-left: 50px;
+	margin-top: 100px;
+	background-color: rgba(255,255,255,0.7);
+}
+
+.tr_show thead {
+	background-color: rgba(0,0,0,0.2);
+	text-align: center;
+}
+
+.tr_show tbody {
+	text-align: right;
+}
+
+.tr_show td {
+	padding: 5px;
+}
