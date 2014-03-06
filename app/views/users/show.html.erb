@@ -14,13 +14,13 @@
 					<td><%= t.id %></td>
 					<td><%= t.amount %> $</td>
 					<td><%= t.created_at.strftime('%F %T') %></td>
-					<td><%= t.credit.amount.to_i %></td>
+					<td><%= t.credits.count %></td>
 				</tr>
 			<% end %>
 				
 				<tr>
 					<td class='suma'> SUM </td>
-					<td class='suma' colspan="3"><%= @credits.to_i %></td>
+					<td class='suma' colspan="3"><%=  %></td>
 				</tr>
 			</tbody>
 	</table>

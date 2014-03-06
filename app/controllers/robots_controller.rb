@@ -1,20 +1,13 @@
 class RobotsController < ApplicationController
 	before_filter :authenticate_user!, only: [ :update ]
-	rescue_from SystemCallError, with: :error
+	rescue_from SystemCallError, with: :serv_error
 	
 		def show
-			# begin
 				@prox = Robot.proximity
-			# rescue  StandardError => e
-			# 	flash[:error] = e.message
-			# 	render 'show'
-			# end
 		end
 
 		def update
-			# begin
 				if Robot.lock
-
 					if params[:commands]
 						params[:commands].scan(/forward|backward|slow_forward|slow_backward|left|right|run|attack/).each do |command|
 							Robot.move(command.to_sym)
@@ -28,15 +21,10 @@ class RobotsController < ApplicationController
 					@prox = Robot.proximity
 					render 'show'
 				end
-			# 	rescue  StandardError => e
-			# 		flash[:error] = e.message
-			# 		render 'show'
-			# end
 		end
 
 private
-	def error
-		flash[:error] = "Error"
-		render 'show'
+	def serv_error
+		redirect_to error_path
 	end
 end

@@ -1,7 +1,7 @@
 require 'open-uri'
 
 class Move 
-	@@url = "#{URL_ROBOT}#{API_KEY}/" 
+	@@url = "#{URL_TEST}#{API_KEY}/" 
 
 	def self.lock
 		url = @@url + "lock"
@@ -9,7 +9,7 @@ class Move
 	end
 
 	def self.proximity
-		url = "#{URL_ROBOT}proximity"
+		url = "#{URL_TEST}proximity"
 		open(url).read
 	end
 

@@ -25,8 +25,22 @@ class User < ActiveRecord::Base
 		return (response.success? && transaction.save)
 	end
 
+  def balance
+    bal = 0
+    self.transactions.each do |t| 
+      t.credits.each do |c|
+        if c.is_used
+          bal -= 1
+        else
+          bal += 1
+        end
+      end
+    end
+    return bal
+  end
+
 protected
   def add_init_credits
-    self.transactions.new(amount: 2)
+    self.transactions.create(amount: 2)
   end
 end

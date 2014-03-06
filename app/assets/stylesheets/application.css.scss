@@ -15,6 +15,7 @@
  .devise {
  	display: inline-block;
  	margin: 50px;
+  margin-top: 120px;
  	background-color: rgba(255,255,255,0.7);
  	border-radius: 20px;
  	padding: 20px;
@@ -23,3 +24,63 @@
  .devise label, .devise input {
  	margin: 10px;
  }
+
+ .error_msg {
+  padding-top: 120px;
+  text-align: center;
+  width: 70%;
+  margin: 0 auto;
+ }
+
+ .error_msg h1 {
+  text-shadow: 3px 3px 0px white;
+ }
+
+a:visited {
+  color: black;
+}
+
+a:hover {
+  text-shadow: 2px 2px 0px black;
+}
+
+.messages {
+  display: inline-block;
+  font-size: 0.7em;
+  width: 100%;
+}
+
+.section {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  background-color: black;
+}
+
+.flash {
+  display: inline-block;
+  color: red;
+  width: 10%;
+}
+
+.credits {
+  width: 40%;
+  display: inline-block;
+  float: right;
+  text-align: right;
+  margin-right: 20px;
+}
+
+.nav {
+  display: inline-block;
+  width: 40%;
+  margin-left: 20px;
+}
+
+.nav p {
+  margin-bottom: 5px;
+}
+
+.section p, a:visited {
+  color: white;
+}

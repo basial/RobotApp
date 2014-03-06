@@ -3,6 +3,8 @@
 	margin-left: 50px;
 	margin-top: 100px;
 	background-color: rgba(255,255,255,0.7);
+  min-width: 300px;
+  text-align: center;
 }
 
 .tr_show thead {
@@ -23,4 +25,8 @@
   border-top-color: black;
   border-top-style: solid;
   border-top-width: thin;
+}
+
+.tr_show table {
+  display: inline-block;
 }

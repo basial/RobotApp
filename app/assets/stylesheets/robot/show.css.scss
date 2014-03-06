@@ -1,6 +1,6 @@
 body {
 	background-image: image-url('lego_small.jpg');
-	background-size: 1%;
+	background-size: 20px;
 	font-family: "Press Start 2P", Arial, serif; font-weight: 400;
 	margin: 0;
 	padding: 0;
@@ -28,10 +28,14 @@ body {
 	margin: 0 auto;
 	font-size: 2em;
 	margin-bottom: 1em;
-	text-shadow: 5px 5px 5px rgba(255,255,255,0.5);
+	text-shadow: 3px 3px 0px white;
 }
 
 @media only screen and (max-width: 900px){
+	body {
+		padding-top: 60px;
+	}
+
 	.panel {
 		max-width: 50%;
 		min-width: 300px;
@@ -84,6 +88,7 @@ body {
 
 .no_log_in {
 	margin-top: 20px;
+	padding-bottom: 20px;
 }
 
 .no_log_in p {
@@ -96,49 +101,7 @@ input {
 	font-family: "Press Start 2P", Arial, serif; font-weight: 400;
 }
 
-.nav {
-	text-shadow: 5px 5px 10px rgba(255,255,255,0.5);
-	margin-bottom: 10px;
-}
-
-.messages {
-	font-size: 0.7em;
-	display: inline-block;
-	margin-right: 20px;
-	background-color: rgba(255,255,255,0.7);
-	border-bottom-left-radius: 10px;
-	border-bottom-right-radius: 10px;
-	width: 100%;
-	min-width: 200px;
-}
-
-.messages p {
-	margin-right: 20px;
-	margin-left: 20px;
-	margin-bottom: 0px;
-}
-
-.section {
-	position: fixed;
-	top: 0px;
-	right: 20px;
-}
-
 textarea {
 	max-width: 200px;
 	max-height: 100px;
-}
-
-.flash {
-	display: inline-block;
-	margin-left: 20px;
-	margin-bottom: 5px;
-	margin-top: 5px;
-	color: red;
-}
-
-.credits p {
-	margin-bottom: 10px;
-	margin-right: 50px;
-	text-align: right;
 }

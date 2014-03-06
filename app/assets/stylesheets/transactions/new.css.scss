@@ -1,12 +1,12 @@
 .form {
 	font-size: 0.9em;
-	display: inline-block;
 	background-color: rgba(255,255,255,0.7);
 	margin-left: 50px;
-	margin-top: 20px; 
-	margin-bottom: 50px;
+	margin-top: 120px; 
 	border-radius: 20px;
 	max-width: 30%;
+	display: inline-block;
+	padding-bottom: 20px;
 }
 
 .form .field, .form .action {
@@ -24,7 +24,7 @@
 }
 
 .form .action {
-	margin-bottom: 20px;
+	padding-bottom: 20px;
 }
 
 .form_text {
@@ -40,15 +40,15 @@
 	min-width: 200px;
 	margin: 0 auto;
 	margin-bottom: 1em;
-	text-shadow: 5px 5px 5px rgba(255,255,255,0.5);
+	text-shadow: 3px 3px 0px white;
 }
 
 @media only screen and (max-width: 900px){
 	.form {
+		display: block;
 		max-width: 50%;
 		min-width: 300px;
 		margin: 0 auto;
-		margin-left: 20px;
 	}
 	.form_text {
 		float: none;

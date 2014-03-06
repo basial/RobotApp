@@ -10,6 +10,7 @@ RobotApp::Application.routes.draw do
   # post 'moves/run', as: :run
   # post 'moves/attack', as: :attack
 
+  get 'robots/error', as: :error
   root "robots#show"
   resource :robot
   resources :transactions, only: [ :new, :create ]
