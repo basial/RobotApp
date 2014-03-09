@@ -5,10 +5,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :transactions
-  after_create :add_init_credits
 
-  def payment!(params)
-  	transaction = self.transactions.new(params)
+  def pay!(params)
+  	@transaction = self.transactions.new(params)
  # 	debugger
   	credit_card = ActiveMerchant::Billing::CreditCard.new(
                 :first_name         => params[:first_name],
@@ -19,28 +18,25 @@ class User < ActiveRecord::Base
                 :verification_value => params[:verification_value])
 
 	  raise MyTransactionError.new("cc not valid") if !credit_card.valid? 
-	  raise MyTransactionError.new("transaction not valid") if !transaction.valid?
+	  raise MyTransactionError.new("transaction not valid") if !@transaction.valid?
 	  	
-		response = GATEWAY.purchase(transaction.amount, credit_card)			
-		return (response.success? && transaction.save)
+		response = GATEWAY.purchase(@transaction.amount, credit_card)	
+    @transaction.credits = @transaction.amount
+		if (response.success? && @transaction.save)
+      self.credits += @transaction.amount
+      self.save
+      return true
+    end
 	end
 
-  def balance
-    bal = 0
-    self.transactions.each do |t| 
-      t.credits.each do |c|
-        if c.is_used
-          bal -= 1
-        else
-          bal += 1
-        end
-      end
-    end
-    return bal
+  def bill!
+    self.credits -= 1 
+    self.paid_at = Time.now
+    transactions.build(amount: 0, credits: -1, user: self)
+    save
   end
 
-protected
-  def add_init_credits
-    self.transactions.create(amount: 2)
+  def has_credits?
+    credits > 0
   end
 end

@@ -8,7 +8,7 @@ class TransactionsController < ApplicationController
 	def create
 		
 		begin
-			if current_user.payment!(transaction_params)
+			if current_user.pay!(transaction_params)
 				flash[:notice] = "Successful transaction"
 				redirect_to root_path
 			else

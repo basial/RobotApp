@@ -37,11 +37,11 @@
  }
 
 a:visited {
-  color: black;
+  color: white;
 }
 
 a:hover {
-  text-shadow: 2px 2px 0px black;
+  color: yellow;
 }
 
 .messages {
@@ -61,6 +61,7 @@ a:hover {
   display: inline-block;
   color: red;
   width: 10%;
+  padding-top: 5px;
 }
 
 .credits {
@@ -81,6 +82,8 @@ a:hover {
   margin-bottom: 5px;
 }
 
-.section p, a:visited {
+.section p, a {
+  text-decoration: none;
   color: white;
+  text-shadow: 2px 2px 0px black;
 }
