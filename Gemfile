@@ -47,3 +47,5 @@ end
  gem 'devise'
 
  gem 'activemerchant'
+
+ gem 'will_paginate'
