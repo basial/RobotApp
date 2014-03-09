@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
 	  raise MyTransactionError.new("cc not valid") if !credit_card.valid? 
 	  raise MyTransactionError.new("transaction not valid") if !@transaction.valid?
 	  	
-		response = GATEWAY.purchase(@transaction.amount, credit_card)	
+		response = GATEWAY.purchase(@transaction.amount*100, credit_card)	
     @transaction.credits = @transaction.amount
 		if (response.success? && @transaction.save)
       self.credits += @transaction.amount
@@ -38,5 +38,9 @@ class User < ActiveRecord::Base
 
   def has_credits?
     credits > 0
+  end
+
+  def has_active_credit?
+    paid_at && Time.now - paid_at < 60.seconds
   end
 end
