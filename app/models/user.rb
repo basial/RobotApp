@@ -3,12 +3,11 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
-  has_many :transactions
+  after_create :send_mail
+  has_many :transactions 
 
   def pay!(params)
   	@transaction = self.transactions.new(params)
- # 	debugger
   	credit_card = ActiveMerchant::Billing::CreditCard.new(
                 :first_name         => params[:first_name],
                 :last_name          => params[:last_name],
@@ -24,7 +23,13 @@ class User < ActiveRecord::Base
     @transaction.credits = @transaction.amount
 		if (response.success? && @transaction.save)
       self.credits += @transaction.amount
+      if self.first_name.blank? || self.last_name.blank?
+        self.first_name = params[:first_name]
+        self.last_name = params[:last_name]
+      end
+
       self.save
+      UserMailer.credits_mail(self.email, @transaction.credits).deliver
       return true
     end
 	end
@@ -42,5 +47,10 @@ class User < ActiveRecord::Base
 
   def has_active_credit?
     paid_at && Time.now - paid_at < 60.seconds
+  end
+
+private
+  def send_mail
+    UserMailer.welcome_mail(self.email).deliver
   end
 end

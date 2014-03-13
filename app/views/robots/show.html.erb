@@ -6,11 +6,11 @@
 <% end %>
 
 	<div class="panel">
-		<div class='prox'>
-			<br><p> Proximity: <%= @prox %> </p>
-		</div>
-
 		<% if current_user %>
+			<div class='prox'>
+				<br><p> Proximity: <%= @prox %> </p>
+			</div>
+			
 			<div class='buttons'>
 				<%= button_to 'Forward', robot_path(do: :forward), method: :put %>
 				<%= button_to 'Backward', robot_path(do: :backward), method: :put %>

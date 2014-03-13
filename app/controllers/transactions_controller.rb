@@ -6,7 +6,6 @@ class TransactionsController < ApplicationController
 	end
 
 	def create
-		
 		begin
 			if current_user.pay!(transaction_params)
 				flash[:notice] = "Successful transaction"

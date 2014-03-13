@@ -1,25 +1,21 @@
 class RobotsController < ApplicationController
 	before_filter :authenticate_user!, only: [ :update ]
 	rescue_from SystemCallError, with: :serv_error
-	
-		def show
-			@prox = Robot.proximity
-		end
 
-		def update
-			if current_user.has_active_credit?
+	def update
+		@prox = Robot.proximity
+		if current_user.has_active_credit?
 				run_robot
+		else
+			if current_user.has_credits?
+				run_robot
+				current_user.bill!
 			else
-				if current_user.has_credits?
-					run_robot
-					current_user.bill!
-				else
-					flash[:error] = 'Buy more credits to play with the robot!'
-					@prox = Robot.proximity	
-					render 'show'
-				end
+				flash[:error] = 'Buy more credits to play with the robot!'
+				render 'show'
 			end
 		end
+	end
 
 private
 	def serv_error

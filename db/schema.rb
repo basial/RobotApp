@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140309194514) do
+ActiveRecord::Schema.define(version: 20140313120912) do
 
   create_table "moves", force: true do |t|
     t.datetime "created_at"
@@ -41,6 +41,9 @@ ActiveRecord::Schema.define(version: 20140309194514) do
     t.datetime "updated_at"
     t.integer  "credits",                default: 2
     t.datetime "paid_at"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "transactions_count",     default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
