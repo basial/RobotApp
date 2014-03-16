@@ -9,6 +9,6 @@ class UserMailer < ActionMailer::Base
   def credits_mail(email_address, credits)
     @email = email_address
     @credits = credits
-    mail(to: email_address, subject: 'New credits bitch')
+    mail(to: email_address, subject: 'New credits')
   end
 end

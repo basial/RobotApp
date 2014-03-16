@@ -49,3 +49,5 @@ end
  gem 'activemerchant'
 
  gem 'will_paginate'
+
+ gem 'omniauth-facebook'

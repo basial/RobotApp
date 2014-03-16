@@ -1,14 +1,5 @@
 RobotApp::Application.routes.draw do
-  devise_for :users
-  # get 'moves/proximity', as: :proximity
-  # post 'moves/forward', as: :forward
-  # post 'moves/backward', as: :backward
-  # post 'moves/slow_forward', as: :slow_forward
-  # post 'moves/slow_backward', as: :slow_backward
-  # post 'moves/left', as: :left
-  # post 'moves/right', as: :right
-  # post 'moves/run', as: :run
-  # post 'moves/attack', as: :attack
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   get 'robots/error', as: :error
   root "robots#show"
