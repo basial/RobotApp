@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
   end
 
   def has_active_credit?
-    paid_at && Time.now - paid_at < 60.seconds
+    paid_at && Time.now - paid_at < 1.seconds
   end
 
   def self.find_for_facebook_oauth(auth)
