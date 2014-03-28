@@ -3,13 +3,15 @@ class RobotsController < ApplicationController
 	rescue_from SystemCallError, with: :serv_error
 
 	def update
-		@prox = Robot.proximity
+		# @prox = Robot.proximity
 		if current_user.has_active_credit?
 				run_robot
+				render 'show'
 		else
 			if current_user.has_credits?
 				run_robot
 				current_user.bill!
+				render 'show'
 			else
 				flash[:error] = 'Buy more credits to play with the robot!'
 				render 'show'

@@ -1,4 +1,5 @@
 <% if current_user %>
+	<img id="robot" src="http://modobase.nl/little_8bit_robot.gif">
 	<div class='text'>
 		<h3> Use buttons to operate the robot or write your commands in the box below.</h3><br> 
 		<h3> Enjoy! </h3>
@@ -12,14 +13,14 @@
 			</div>
 			
 			<div class='buttons'>
-				<%= button_to 'Forward', robot_path(do: :forward), method: :put %>
-				<%= button_to 'Backward', robot_path(do: :backward), method: :put %>
-				<%= button_to 'Slowly forward', robot_path(do: :slow_forward), method: :put %>
-				<%= button_to 'Slowly backward', robot_path(do: :slow_backward), method: :put %>
-				<%= button_to 'Left', robot_path(do: :left), method: :put %>
-				<%= button_to 'Right', robot_path(do: :right), method: :put %>
-				<%= button_to 'Run', robot_path(do: :run), method: :put %>
-				<%= button_to 'ATTAAAAACK!!!', robot_path(do: :attack), method: :put %>
+				<div id="forward"><%= button_to 'Forward', robot_path(do: :forward), method: :put %></div>
+				<div id="backward"><%= button_to 'Backward', robot_path(do: :backward), method: :put %></div>
+				<div id="s_forward"><%= button_to 'Slowly forward', robot_path(do: :slow_forward), method: :put %></div>
+				<div id="s_backward"><%= button_to 'Slowly backward', robot_path(do: :slow_backward), method: :put %></div>
+				<div id="left"><%= button_to 'Left', robot_path(do: :left), method: :put %></div>
+				<div id="right"><%= button_to 'Right', robot_path(do: :right), method: :put %></div>
+				<div id="run"><%= button_to 'Run', robot_path(do: :run), method: :put %></div>
+				<div id="attack"><%= button_to 'ATTAAAAACK!!!', robot_path(do: :attack), method: :put %></div>
 			</div>
 
 			<div class='commands_form'>

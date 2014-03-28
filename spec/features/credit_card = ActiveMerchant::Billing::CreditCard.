@@ -1,0 +1,7 @@
+credit_card = ActiveMerchant::Billing::CreditCard.new(
+                :first_name         => 'Bob',
+                :last_name          => 'Bobsen',
+                :number             => '370000000000002',
+                :month              => '8',
+                :year               => Time.now.year+1,
+                :verification_value => '000')
