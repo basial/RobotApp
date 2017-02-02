@@ -54,7 +54,7 @@ end
 # gem 'capistrano', group: :development
 
 # Use debugger
- gem 'debugger', group: [:development, :test]
+ gem 'pry-byebug', group: [:development, :test]
 
  gem 'devise'
 
